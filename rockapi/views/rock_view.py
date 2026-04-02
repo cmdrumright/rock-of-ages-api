@@ -2,7 +2,7 @@ from django.http import HttpResponseServerError
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from rockapi.models import Rock
+from rockapi.models import Rock, Type
 from .type_view import TypeSerializer
 from django.contrib.auth.models import User
 
@@ -10,22 +10,25 @@ from django.contrib.auth.models import User
 class RockView(ViewSet):
     """Rock view set"""
 
-    # def create(self, request):
-    #     """Handle POST operations
-    #
-    #     Returns:
-    #         Response -- JSON serialized instance
-    #     """
-    #     rock = Rock()
-    #     rock.sample_name = request.data["name"]
-    #     rock.sample_description = request.data["description"]
-    #
-    #     try:
-    #         rock.save()
-    #         serializer = rockSerializer(rock)
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     except Exception as ex:
-    #         return Response({"reason": ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
+    def create(self, request):
+        """Handle POST operations
+        Returns:
+        Response -- JSON serialized instance
+        """
+        chosen_type = Type.objects.get(pk=request.data["typeId"])
+
+        rock = Rock()
+        rock.user = request.auth.user
+        rock.name = request.data["name"]
+        rock.weight = request.data["weight"]
+        rock.type = chosen_type
+
+        try:
+            rock.save()
+            serializer = RockSerializer(rock, many=False)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as ex:
+            return Response({"reason": ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
         """Handle GET requests for single item
@@ -35,7 +38,7 @@ class RockView(ViewSet):
         """
         try:
             rock = Rock.objects.get(pk=pk)
-            serializer = rockSerializer(rock)
+            serializer = RockSerializer(rock)
             return Response(serializer.data)
         except Exception as ex:
             return Response({"reason": ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)

@@ -32,13 +32,13 @@ There are no views, models, or serializers in this boilerplate project. The only
 ### Types
 
 ```bash
-curl --header "Authorization: Token 125d9cb9ee1d9e73995c11939198aff1bbab8de6" 'http://localhost:8000/types' | jq
+curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'http://localhost:8000/types' | jq
 
 ```
 
 ### Rocks
 
 ```bash
-curl --header "Authorization: Token 125d9cb9ee1d9e73995c11939198aff1bbab8de6" 'http://localhost:8000/rocks' | jq
+curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'http://localhost:8000/rocks' | jq
 
 ```
