@@ -35,3 +35,10 @@ There are no views, models, or serializers in this boilerplate project. The only
 curl --header "Authorization: Token 125d9cb9ee1d9e73995c11939198aff1bbab8de6" 'http://localhost:8000/types' | jq
 
 ```
+
+### Rocks
+
+```bash
+curl --header "Authorization: Token 125d9cb9ee1d9e73995c11939198aff1bbab8de6" 'http://localhost:8000/rocks' | jq
+
+```
