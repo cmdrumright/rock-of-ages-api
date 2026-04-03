@@ -41,4 +41,9 @@ curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'h
 ```bash
 curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'http://localhost:8000/rocks' | jq
 
+
+curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" /
+--request "DELETE" /
+'http://localhost:8000/rocks' | jq
+
 ```
