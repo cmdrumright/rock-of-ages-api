@@ -38,12 +38,23 @@ curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'h
 
 ### Rocks
 
+### GET
+
 ```bash
-curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'http://localhost:8000/rocks' | jq
+curl --header "Authorization: Token 0956108a6fb02c2fff9e01c633ddf576138c723d" 'http://localhost:8000/rocks' | jq
+```
 
+### GET mine
 
-curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" /
---request "DELETE" /
-'http://localhost:8000/rocks' | jq
+```bash
+curl --header "Authorization: Token 4f46b9b3906e3034775632ebe6c2e89f1c1833b9" 'http://localhost:8000/rocks?owner=current' | jq
+```
+
+### DELETE
+
+```bash
+curl --header "Authorization: Token 0956108a6fb02c2fff9e01c633ddf576138c723d" \
+--request "DELETE" \
+'http://localhost:8000/rocks/8' | jq
 
 ```
